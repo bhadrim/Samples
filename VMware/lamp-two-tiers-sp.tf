@@ -432,7 +432,7 @@ resource "camc_scriptpackage" "install_mariadb" {
   	remote_host = "${vsphere_virtual_machine.mariadb_vm.clone.0.customize.0.network_interface.0.ipv4_address}"
   	remote_user = "${var.mariadb_ssh_user}"
   	remote_password = "${var.mariadb_ssh_user_password}"
-  	source = "http://9.42.68.32/defaultdata/bhadrim/install_mariadb_script.sh"
+  	source = "https://7f59d0c6b3f033ac0a53141b4fb85eace2c34570@github.com/bhadrim/Samples/blob/master/VMware/install_mariadb_script.sh"
   	destination = "/root/install_mariadb_script.sh"	
 }
 
@@ -443,7 +443,7 @@ resource "camc_scriptpackage" "install_php" {
   	remote_host = "${vsphere_virtual_machine.mariadb_vm.clone.0.customize.0.network_interface.0.ipv4_address}"
   	remote_user = "${var.mariadb_ssh_user}"
   	remote_password = "${var.mariadb_ssh_user_password}"
-  	source = "http://9.42.68.32/defaultdata/bhadrim/install_mariadb_script.sh"
+  	source = "https://7f59d0c6b3f033ac0a53141b4fb85eace2c34570@github.com/bhadrim/Samples/blob/master/VMware/install_php_script.sh"
   	destination = "/root/install_php_script.sh"	
 }
 
