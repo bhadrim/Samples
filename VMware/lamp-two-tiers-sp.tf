@@ -442,9 +442,9 @@ resource "camc_scriptpackage" "install_php" {
   depends_on = ["camc_scriptpackage.install_mariadb", "module.provision_proxy_php_vm"]
  	program = ["/bin/bash", "/root/install_php_script.sh", "${vsphere_virtual_machine.php_vm.clone.0.customize.0.network_interface.0.ipv4_address}", "${vsphere_virtual_machine.mariadb_vm.clone.0.customize.0.network_interface.0.ipv4_address}", "${var.mariadb_user}", "${var.mariadb_pwd}"]
   	on_create = true
-  	remote_host = "${vsphere_virtual_machine.mariadb_vm.clone.0.customize.0.network_interface.0.ipv4_address}"
-  	remote_user = "${var.mariadb_ssh_user}"
-  	remote_password = "${var.mariadb_ssh_user_password}"
+  	remote_host = "${vsphere_virtual_machine.php_vm.clone.0.customize.0.network_interface.0.ipv4_address}"
+  	remote_user = "${var.php_ssh_user}"
+  	remote_password = "${var.php_ssh_user_password}"
   	source = "https://raw.githubusercontent.com/bhadrim/Samples/master/VMware/install_php_script.sh"
 	source_user = "bhadrim"
 	source_password = "Github4madapusi"	
