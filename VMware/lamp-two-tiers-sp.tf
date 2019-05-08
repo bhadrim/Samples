@@ -447,6 +447,11 @@ resource "camc_scriptpackage" "install_mariadb" {
 #  value = "${camc_scriptpackage.install_mariadb.result["status"]}"
 #}	
 	
+output "Install Maria logs"{
+  value = "${camc_scriptpackage.install_mariadb.result["stdout"]}"
+}	
+	
+	
 #resource "camc_scriptpackage" "get_mariadb_logs" {
 # 	depends_on = ["camc_scriptpackage.install_mariadb"]	
 #  	program = ["cat", "${camc_scriptpackage.install_mariadb.result["loglocation"]}"]
@@ -456,9 +461,9 @@ resource "camc_scriptpackage" "install_mariadb" {
 #  	remote_password = "${var.mariadb_ssh_user_password}"	
 #}
 
-output "Install Maria logs"{
-  value = "${camc_scriptpackage.get_mariadb_logs.result["stdout"]}"
-}	
+#output "Install Maria logs"{
+#  value = "${camc_scriptpackage.get_mariadb_logs.result["stdout"]}"
+#}	
 	
 resource "camc_scriptpackage" "install_php" {
   	depends_on = ["camc_scriptpackage.install_mariadb", "module.provision_proxy_php_vm"]
