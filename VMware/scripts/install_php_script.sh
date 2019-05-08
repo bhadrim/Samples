@@ -18,17 +18,17 @@ retryInstall () {
     sleep 15
    done
 }
-echo "---start installing apache---" >> tee -a $LOGFILE  2>&1
-retryInstall "yum install -y httpd"                       >> $LOGFILE 2>&1 || { echo "---Failed to install apache---" | tee -a $LOGFILE; exit 1; }
-systemctl start httpd                                     >> $LOGFILE 2>&1 || { echo "---Failed to start apache---" | tee -a $LOGFILE; exit 1; }
-systemctl enable httpd                                    >> $LOGFILE 2>&1 || { echo "---Failed to enable apache---" | tee -a $LOGFILE; exit 1; }
-firewall-cmd --state >> $LOGFILE 2>&1
+echo "---start installing apache---" >> tee -a $LOGFILE
+retryInstall "yum install -y httpd"                       >> $LOGFILE || { echo "---Failed to install apache---" | tee -a $LOGFILE; exit 1; }
+systemctl start httpd                                     >> $LOGFILE || { echo "---Failed to start apache---" | tee -a $LOGFILE; exit 1; }
+systemctl enable httpd                                    >> $LOGFILE || { echo "---Failed to enable apache---" | tee -a $LOGFILE; exit 1; }
+firewall-cmd --state >> $LOGFILE 
 if [ $? -eq 0 ] ; then
-  firewall-cmd --zone=public --add-port=80/tcp --permanent  >> $LOGFILE 2>&1 || { echo "---Failed to open port 80---" | tee -a $LOGFILE; exit 1; }
-  firewall-cmd --reload                                     >> $LOGFILE 2>&1 || { echo "---Failed to reload firewall---" | tee -a $LOGFILE; exit 1; }
+  firewall-cmd --zone=public --add-port=80/tcp --permanent  >> $LOGFILE || { echo "---Failed to open port 80---" | tee -a $LOGFILE; exit 1; }
+  firewall-cmd --reload                                     >> $LOGFILE || { echo "---Failed to reload firewall---" | tee -a $LOGFILE; exit 1; }
 fi
-mkdir -p /var/www/html/$PHP_HOST/public_html              >> $LOGFILE 2>&1 || { echo "---Failed to create directory for web pages---" | tee -a $LOGFILE; exit 1; }
-mkdir -p /var/log/httpd/$PHP_HOST/logs                    >> $LOGFILE 2>&1 || { echo "---Failed to create directory for apache logs---" | tee -a $LOGFILE; exit 1; }
+mkdir -p /var/www/html/$PHP_HOST/public_html              >> $LOGFILE || { echo "---Failed to create directory for web pages---" | tee -a $LOGFILE; exit 1; }
+mkdir -p /var/log/httpd/$PHP_HOST/logs                    >> $LOGFILE || { echo "---Failed to create directory for apache logs---" | tee -a $LOGFILE; exit 1; }
 cat << EOT > /etc/httpd/conf.d/virtualHost.conf
 <Directory /var/www/html/$PHP_HOST/public_html>
     Require all granted
@@ -41,10 +41,10 @@ cat << EOT > /etc/httpd/conf.d/virtualHost.conf
         CustomLog /var/log/httpd/$PHP_HOST/logs/access.log combined
 </VirtualHost>
 EOT
-systemctl restart httpd                                   >> $LOGFILE 2>&1 || { echo "---Failed to restart apache---" | tee -a $LOGFILE; exit 1; }
-echo "---finish installing apache---" >> tee -a $LOGFILE  2>&1
-echo "---start installing php---" >> tee -a $LOGFILE  2>&1
-retryInstall "yum install -y php php-mysql php-gd php-pear"  >> $LOGFILE 2>&1 || { echo "---Failed to install php---" | tee -a $LOGFILE; exit 1; }
+systemctl restart httpd                                   >> $LOGFILE || { echo "---Failed to restart apache---" | tee -a $LOGFILE; exit 1; }
+echo "---finish installing apache---" >> tee -a $LOGFILE  
+echo "---start installing php---" >> tee -a $LOGFILE  
+retryInstall "yum install -y php php-mysql php-gd php-pear"  >> $LOGFILE || { echo "---Failed to install php---" | tee -a $LOGFILE; exit 1; }
 cat << EOT > /var/www/html/$PHP_HOST/public_html/test.php
 <html>
 <head>
@@ -68,11 +68,11 @@ cat << EOT > /var/www/html/$PHP_HOST/public_html/test.php
 </body>
 </html>
 EOT
-sestatus | grep 'enabled' >> $LOGFILE 2>&1
+sestatus | grep 'enabled' >> $LOGFILE 
 if [ $? == 0 ]; then
-   setsebool -P httpd_can_network_connect=1                  >> $LOGFILE 2>&1 || { echo "---Failed to change SELinux permission---" | tee -a $LOGFILE; exit 1; }
+   setsebool -P httpd_can_network_connect=1                  >> $LOGFILE || { echo "---Failed to change SELinux permission---" | tee -a $LOGFILE; exit 1; }
 fi
-systemctl restart httpd                                   >> $LOGFILE 2>&1 || { echo "---Failed to restart apache---" | tee -a $LOGFILE; exit 1; }
-echo "---finish installing php---" >> tee -a $LOGFILE 2>&1
+systemctl restart httpd                                   >> $LOGFILE || { echo "---Failed to restart apache---" | tee -a $LOGFILE; exit 1; }
+echo "---finish installing php---" >> tee -a $LOGFILE 
 logvalue=$(</var/log/install_php.log)
 echo $logvalue
