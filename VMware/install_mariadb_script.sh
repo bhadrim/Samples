@@ -28,5 +28,4 @@ if [ $? -eq 0 ] ; then
   firewall-cmd --reload                                       >> $LOGFILE || { echo "---Failed to reload firewall---" | tee -a $LOGFILE; exit 1; }
 fi
 echo "---finish installing mariaDB---" >> $LOGFILE
-logvalue=$(</var/log/install_mariadb.log)
-echo '{"log":"'"$logvalue"'","status":"warning"}'
+echo '{"loglocation":"/var/log/install_mariadb.log","status":"warning"}'
