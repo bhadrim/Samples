@@ -444,7 +444,7 @@ output "Install Maria log"{
 	
 resource "camc_scriptpackage" "install_php" {
   	depends_on = ["camc_scriptpackage.install_mariadb"]	
-  	program = ["cat", ${camc_scriptpackage.install_mariadb.result["loglocation"]}]
+  	program = ["cat", "${camc_scriptpackage.install_mariadb.result["loglocation"]}"]
   	on_create = true
   	remote_host = "${vsphere_virtual_machine.mariadb_vm.clone.0.customize.0.network_interface.0.ipv4_address}"
   	remote_user = "${var.mariadb_ssh_user}"
