@@ -438,11 +438,11 @@ resource "camc_scriptpackage" "install_mariadb" {
   	destination = "/root/install_mariadb_script.sh"	
 }
 	
-output "Install Maria log"{
+output "Install Maria Status"{
   value = "${camc_scriptpackage.install_mariadb.result["status"]}"
 }	
 	
-resource "camc_scriptpackage" "install_php" {
+resource "camc_scriptpackage" "get_mariadb_logs" {
   	depends_on = ["camc_scriptpackage.install_mariadb"]	
   	program = ["cat", "${camc_scriptpackage.install_mariadb.result["loglocation"]}"]
   	on_create = true
@@ -451,6 +451,10 @@ resource "camc_scriptpackage" "install_php" {
   	remote_password = "${var.mariadb_ssh_user_password}"	
 }
 
+output "Install Maria logs"{
+  value = "${camc_scriptpackage.get_mariadb_logs.result["status"]}"
+}	
+	
 resource "camc_scriptpackage" "install_php" {
   	depends_on = ["camc_scriptpackage.install_mariadb", "module.provision_proxy_php_vm"]
  	program = ["/bin/bash", "/root/install_php_script.sh", "${vsphere_virtual_machine.php_vm.clone.0.customize.0.network_interface.0.ipv4_address}", "${vsphere_virtual_machine.mariadb_vm.clone.0.customize.0.network_interface.0.ipv4_address}", "${var.mariadb_user}", "${var.mariadb_pwd}"]
@@ -464,7 +468,7 @@ resource "camc_scriptpackage" "install_php" {
   	destination = "/root/install_php_script.sh"	
 }
 	
-output "Install PHP log"{
+output "Install PHP logs"{
   value = "${camc_scriptpackage.install_php.result["stdout"]}"
 }		
 
