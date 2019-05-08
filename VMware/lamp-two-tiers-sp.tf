@@ -439,7 +439,7 @@ resource "camc_scriptpackage" "install_mariadb" {
 }
 	
 output "Install Maria DB Script finished with status"{
-  value = "${camc_scriptpackage.install_mariadb.result.status}"
+  value = "${camc_scriptpackage.install_mariadb.result}"
 }	
 
 resource "camc_scriptpackage" "install_php" {
@@ -456,7 +456,7 @@ resource "camc_scriptpackage" "install_php" {
 }
 	
 output "Install PHP Script finished with status"{
-  value = "${camc_scriptpackage.install_php.result.status}"
+  value = "${camc_scriptpackage.install_php.result}"
 }		
 
 output "application_url" {
