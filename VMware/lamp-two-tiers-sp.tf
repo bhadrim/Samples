@@ -438,8 +438,12 @@ resource "camc_scriptpackage" "install_mariadb" {
   	destination = "/root/install_mariadb_script.sh"	
 }
 	
-output "Install Maria DB Script finished with status"{
-  value = "${camc_scriptpackage.install_mariadb.result}"
+output "Install Maria DB log"{
+  value = "${camc_scriptpackage.install_mariadb.result["log"]}"
+}
+	
+output "Install Maria DB script status"{
+  value = "${camc_scriptpackage.install_mariadb.result["status"]}"
 }	
 
 resource "camc_scriptpackage" "install_php" {
@@ -455,7 +459,7 @@ resource "camc_scriptpackage" "install_php" {
   	destination = "/root/install_php_script.sh"	
 }
 	
-output "Install PHP Script finished with status"{
+output "Install PHP log"{
   value = "${camc_scriptpackage.install_php.result["stdout"]}"
 }		
 
