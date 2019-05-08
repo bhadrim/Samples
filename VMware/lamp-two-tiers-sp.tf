@@ -456,7 +456,7 @@ resource "camc_scriptpackage" "install_php" {
 }
 	
 output "Install PHP Script finished with status"{
-  value = "${camc_scriptpackage.install_php.result}"
+  value = "${camc_scriptpackage.install_php.result["stdout"]}"
 }		
 
 output "application_url" {
