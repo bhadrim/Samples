@@ -413,7 +413,7 @@ resource "vsphere_virtual_machine" "php_vm" {
   }
 
   network_interface {
-install_php    network_id   = "${data.vsphere_network.php_vm_network.id}"
+    network_id   = "${data.vsphere_network.php_vm_network.id}"
     adapter_type = "${var.php_vm_adapter_type}"
   }
 
