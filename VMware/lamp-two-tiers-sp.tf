@@ -427,7 +427,7 @@ resource "vsphere_virtual_machine" "php_vm" {
 
 resource "camc_scriptpackage" "install_mariadb" {	
 	depends_on = ["module.provision_proxy_mariadb_vm"]
-  	program = ["/bin/bash", "/root/install_mariadb_script.sh", "${var.mariadb_user}", "${var.mariadb_pwd}", "${vsphere_virtual_machine.php_vm.clone.0.customize.0.network_interface.0.ipv4_address}"]
+  	program = ["/bin/bash", "/root/install_mariadb_script.sh"]
   	on_create = true
   	remote_host = "${vsphere_virtual_machine.mariadb_vm.clone.0.customize.0.network_interface.0.ipv4_address}"
   	remote_user = "${var.mariadb_ssh_user}"
