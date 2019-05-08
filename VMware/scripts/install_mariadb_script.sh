@@ -1,5 +1,7 @@
 #!/bin/bash
+read query
 LOGFILE="/var/log/install_mariadb.log"
+echo $query  >> $LOGFILE
 USER=$1
 PASSWORD=$2
 HOST=$3
