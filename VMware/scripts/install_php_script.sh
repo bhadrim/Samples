@@ -18,7 +18,7 @@ retryInstall () {
     sleep 15
    done
 }
-echo "---start installing apache---" >> tee -a $LOGFILE
+echo "---start installing apache---" >> $LOGFILE
 retryInstall "yum install -y httpd"                       >> $LOGFILE || { echo "---Failed to install apache---" | tee -a $LOGFILE; exit 1; }
 systemctl start httpd                                     >> $LOGFILE || { echo "---Failed to start apache---" | tee -a $LOGFILE; exit 1; }
 systemctl enable httpd                                    >> $LOGFILE || { echo "---Failed to enable apache---" | tee -a $LOGFILE; exit 1; }
@@ -42,8 +42,8 @@ cat << EOT > /etc/httpd/conf.d/virtualHost.conf
 </VirtualHost>
 EOT
 systemctl restart httpd                                   >> $LOGFILE || { echo "---Failed to restart apache---" | tee -a $LOGFILE; exit 1; }
-echo "---finish installing apache---" >> tee -a $LOGFILE  
-echo "---start installing php---" >> tee -a $LOGFILE  
+echo "---finish installing apache---" >> $LOGFILE  
+echo "---start installing php---" >> $LOGFILE  
 retryInstall "yum install -y php php-mysql php-gd php-pear"  >> $LOGFILE || { echo "---Failed to install php---" | tee -a $LOGFILE; exit 1; }
 cat << EOT > /var/www/html/$PHP_HOST/public_html/test.php
 <html>
@@ -73,6 +73,6 @@ if [ $? == 0 ]; then
    setsebool -P httpd_can_network_connect=1                  >> $LOGFILE || { echo "---Failed to change SELinux permission---" | tee -a $LOGFILE; exit 1; }
 fi
 systemctl restart httpd                                   >> $LOGFILE || { echo "---Failed to restart apache---" | tee -a $LOGFILE; exit 1; }
-echo "---finish installing php---" >> tee -a $LOGFILE 
+echo "---finish installing php---" >> $LOGFILE 
 logvalue=$(</var/log/install_php.log)
 echo $logvalue
