@@ -413,7 +413,7 @@ resource "vsphere_virtual_machine" "php_vm" {
   }
 
   network_interface {
-    network_id   = "${data.vsphere_network.php_vm_network.id}"
+install_php    network_id   = "${data.vsphere_network.php_vm_network.id}"
     adapter_type = "${var.php_vm_adapter_type}"
   }
 
@@ -438,10 +438,12 @@ resource "camc_scriptpackage" "install_mariadb" {
   	destination = "/root/install_mariadb_script.sh"	
 }
 	
-
+output "Install Maria DB Status"{
+  value = "${camc_scriptpackage.install_mariadb.result["status"]}"
+}	
 
 resource "camc_scriptpackage" "install_php" {
-
+  count = "${camc_scriptpackage.install_mariadb.result["status"] == "success" || camc_scriptpackage.install_mariadb.result["status"] == "warning" ? 1 : 0}"
   depends_on = ["camc_scriptpackage.install_mariadb", "module.provision_proxy_php_vm"]
  	program = ["/bin/bash", "/root/install_php_script.sh", "${vsphere_virtual_machine.php_vm.clone.0.customize.0.network_interface.0.ipv4_address}", "${vsphere_virtual_machine.mariadb_vm.clone.0.customize.0.network_interface.0.ipv4_address}", "${var.mariadb_user}", "${var.mariadb_pwd}"]
   	on_create = true
@@ -453,6 +455,10 @@ resource "camc_scriptpackage" "install_php" {
 	source_password = "Github4madapusi"	
   	destination = "/root/install_php_script.sh"	
 }
+	
+output "Install PHP Status"{
+  value = "${camc_scriptpackage.install_php.result["status"]}"
+}		
 
 output "application_url" {
   value = "http://${vsphere_virtual_machine.php_vm.clone.0.customize.0.network_interface.0.ipv4_address}/test.php"
