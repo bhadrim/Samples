@@ -28,3 +28,4 @@ if [ $? -eq 0 ] ; then
   firewall-cmd --reload                                       >> $LOGFILE 2>&1 || { echo "---Failed to reload firewall---" | tee -a $LOGFILE; exit 1; }
 fi
 echo "---finish installing mariaDB---" | tee -a $LOGFILE 2>&1
+echo '{"status":"success"}'
