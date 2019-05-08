@@ -2,7 +2,7 @@
 read query
 LOGFILE="/var/log/install_mariadb.log"
 echo $query  >> $LOGFILE
-for s in $(echo $values | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]" ); do
+for s in $(echo $query | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]" ); do
     export $s
 done
 #USER=$1
