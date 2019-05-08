@@ -451,7 +451,7 @@ resource "camc_scriptpackage" "install_php" {
   	destination = "/root/install_php_script.sh"	
 }
 
-output "IBM Cloud PHP address" {
+output "application_url" {
   value = "http://${vsphere_virtual_machine.php_vm.clone.0.customize.0.network_interface.0.ipv4_address}/test.php"
 }
 
