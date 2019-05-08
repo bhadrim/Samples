@@ -438,9 +438,7 @@ resource "camc_scriptpackage" "install_mariadb" {
   	destination = "/root/install_mariadb_script.sh"	
 }
 	
-output "Install Maria DB Status"{
-  value = "${camc_scriptpackage.install_mariadb.result["status"]}"
-}	
+
 
 resource "camc_scriptpackage" "install_php" {
 
