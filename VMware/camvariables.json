@@ -839,7 +839,7 @@
   ],
   "template_output_params": [
     {
-      "name": "IBM Cloud PHP address",
+      "name": "application_url",
       "label": "IBM Cloud PHP address",
       "description": "",
       "group_name": "",
