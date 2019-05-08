@@ -438,13 +438,13 @@ resource "camc_scriptpackage" "install_mariadb" {
   	destination = "/root/install_mariadb_script.sh"	
 }
 	
-#output "Install Maria DB log"{
-#  value = "${camc_scriptpackage.install_mariadb.result["log"]}"
-#}
+output "Install Maria DB log"{
+  value = "${camc_scriptpackage.install_mariadb["log"]}"
+}
 	
-#output "Install Maria DB script status"{
-#  value = "${camc_scriptpackage.install_mariadb.result["status"]}"
-#}
+output "Install Maria DB script status"{
+  value = "${camc_scriptpackage.install_mariadb["status"]}"
+}
 	
 output "Install Maria log"{
   value = "${camc_scriptpackage.install_mariadb.result["stdout"]}"
