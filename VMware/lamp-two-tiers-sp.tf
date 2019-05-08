@@ -452,7 +452,7 @@ resource "camc_scriptpackage" "get_mariadb_logs" {
 }
 
 output "Install Maria logs"{
-  value = "${camc_scriptpackage.get_mariadb_logs.result["status"]}"
+  value = "${camc_scriptpackage.get_mariadb_logs.result["stdout"]}"
 }	
 	
 resource "camc_scriptpackage" "install_php" {
