@@ -17,7 +17,7 @@ retryInstall () {
     sleep 15
    done
 }
-echo "---start installing mariaDB---" | tee -a $LOGFILE 2>&1
+echo "---start installing mariaDB---" | tee -a $LOGFILE
 retryInstall "yum install -y mariadb mariadb-server"        >> $LOGFILE 2>&1 || { echo "---Failed to install MariaDB---" | tee -a $LOGFILE; exit 1; }
 systemctl start mariadb                                     >> $LOGFILE 2>&1 || { echo "---Failed to start MariaDB---" | tee -a $LOGFILE; exit 1; }
 systemctl enable mariadb                                    >> $LOGFILE 2>&1 || { echo "---Failed to enable MariaDB---" | tee -a $LOGFILE; exit 1; }
@@ -27,5 +27,5 @@ if [ $? -eq 0 ] ; then
   firewall-cmd --zone=public --add-port=3306/tcp --permanent  >> $LOGFILE 2>&1 || { echo "---Failed to open port 3306---" | tee -a $LOGFILE; exit 1; }
   firewall-cmd --reload                                       >> $LOGFILE 2>&1 || { echo "---Failed to reload firewall---" | tee -a $LOGFILE; exit 1; }
 fi
-echo "---finish installing mariaDB---" | tee -a $LOGFILE 2>&1
+echo "---finish installing mariaDB---" | tee -a $LOGFILE
 echo '{"status":"success"}'
