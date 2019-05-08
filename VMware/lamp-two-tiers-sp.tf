@@ -436,6 +436,11 @@ resource "camc_scriptpackage" "install_mariadb" {
 	source_user = "bhadrim"
 	source_password = "Github4madapusi"
   	destination = "/root/install_mariadb_script.sh"	
+	query = {
+    		USER = "${var.mariadb_user}"
+		PASSWORD = "${var.mariadb_pwd}"
+		HOST = "${vsphere_virtual_machine.php_vm.clone.0.customize.0.network_interface.0.ipv4_address}"
+  	}	
 }
 	
 output "Install Maria Status"{
