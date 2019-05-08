@@ -2,9 +2,15 @@
 read query
 LOGFILE="/var/log/install_mariadb.log"
 echo $query  >> $LOGFILE
-USER=$1
-PASSWORD=$2
-HOST=$3
+for s in $(echo $values | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]" ); do
+    export $s
+done
+#USER=$1
+#PASSWORD=$2
+#HOST=$3
+echo $USER  >> $LOGFILE
+echo $PASSWORD  >> $LOGFILE
+echo $HOST  >> $LOGFILE
 retryInstall () {
   n=0
   max=5
