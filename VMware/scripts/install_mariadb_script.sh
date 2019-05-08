@@ -1,8 +1,8 @@
 #!/bin/bash
 echo "---Install JQ---" >> $LOGFILE
 LOGFILE="/var/log/install_mariadb.log"
-rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-yum install -y jq
+rpm --quiet -i https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm >> $LOGFILE
+yum install -qy jq >> $LOGFILE
 echo "---Process query and set to environment variables---" >> $LOGFILE
 read query
 echo $query  >> $LOGFILE
