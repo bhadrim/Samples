@@ -837,5 +837,16 @@
       "required": false
     }
   ],
-  "template_output_params": []
+  "template_output_params": [
+    {
+      "name": "IBM Cloud PHP address",
+      "label": "IBM Cloud PHP address",
+      "description": "",
+      "group_name": "",
+      "secured": false,
+      "hidden": false,
+      "shortname": "",
+      "type": "url"
+    }    
+  ]
 }
