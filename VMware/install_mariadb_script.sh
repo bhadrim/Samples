@@ -29,4 +29,4 @@ if [ $? -eq 0 ] ; then
 fi
 echo "---finish installing mariaDB---" >> $LOGFILE
 logvalue=$(</var/log/install_mariadb.log)
-echo '{"log":"'"$logvalue"'","status":"success"}'
+echo '{"log":"'"$logvalue"'","status":"warning"}'
