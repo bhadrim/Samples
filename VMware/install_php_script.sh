@@ -74,4 +74,3 @@ if [ $? == 0 ]; then
 fi
 systemctl restart httpd                                   >> $LOGFILE 2>&1 || { echo "---Failed to restart apache---" | tee -a $LOGFILE; exit 1; }
 echo "---finish installing php---" | tee -a $LOGFILE 2>&1
-echo '{"status":"success"}'
