@@ -1,6 +1,10 @@
 #!/bin/bash
-read query
+echo "---Install JQ---" >> $LOGFILE
 LOGFILE="/var/log/install_mariadb.log"
+rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+yum install -y jq
+echo "---Process query and set to environment variables---" >> $LOGFILE
+read query
 echo $query  >> $LOGFILE
 for s in $(echo $query | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]" ); do
     export $s
