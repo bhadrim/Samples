@@ -434,7 +434,7 @@ resource "camc_scriptpackage" "install_mariadb" {
   	remote_password = "${var.mariadb_ssh_user_password}"
   	source = "https://raw.githubusercontent.com/bhadrim/Samples/master/VMware/scripts/install_mariadb_script.sh"
 	source_user = "bhadrim"
-	source_password = "Github4madapusi"
+	source_password = "Github4Madapusi"
   	destination = "/root/install_mariadb_script.sh"	
 	query = {
     		USER = "${var.mariadb_user}"
