@@ -474,7 +474,7 @@ resource "camc_scriptpackage" "install_php" {
   	remote_password = "${var.php_ssh_user_password}"
   	source = "https://raw.githubusercontent.com/bhadrim/Samples/master/VMware/scripts/install_php_script.sh"
 	source_user = "bhadrim"
-	source_password = "Github4madapusi"	
+	source_password = "Github4Madapusi"	
   	destination = "/root/install_php_script.sh"	
 }
 	
