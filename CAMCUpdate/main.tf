@@ -7,7 +7,7 @@ resource "camc_scriptpackage" "create" {
 
 resource "camc_scriptpackage" "update" {
   program = ["/bin/bash","./update.sh"]
-  program_sensitive = ["-p", "${var.password}"]
+  #program_sensitive = ["-p", "${var.password}"]
   on_update = true
 }
 
