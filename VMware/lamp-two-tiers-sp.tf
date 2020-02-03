@@ -214,7 +214,7 @@ variable "mariadb_vm_image" {
 }
 
 module "provision_proxy_mariadb_vm" {
-  source 							= "git::https://7f59d0c6b3f033ac0a53141b4fb85eace2c34570@github.com/IBM-CAMHub-Open/terraform-modules.git?ref=1.0//vmware/proxy"
+  source 							= "git::https://github.com/IBM-CAMHub-Open/terraform-modules.git?ref=1.0//vmware/proxy"
   ip                  = "${var.mariadb_vm_ipv4_address}"
   id									= "${vsphere_virtual_machine.mariadb_vm.id}"
   ssh_user     				= "${var.mariadb_ssh_user}"
@@ -367,7 +367,7 @@ variable "php_vm_image" {
 }
 
 module "provision_proxy_php_vm" {
-  source 							= "git::https://7f59d0c6b3f033ac0a53141b4fb85eace2c34570@github.com/IBM-CAMHub-Open/terraform-modules.git?ref=1.0//vmware/proxy"
+  source 							= "git::https://github.com/IBM-CAMHub-Open/terraform-modules.git?ref=1.0//vmware/proxy"
   ip                  = "${var.php_vm_ipv4_address}"
   id									= "${vsphere_virtual_machine.php_vm.id}"
   ssh_user     				= "${var.php_ssh_user}"
