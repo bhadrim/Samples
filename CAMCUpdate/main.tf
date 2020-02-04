@@ -1,6 +1,6 @@
 resource "camc_scriptpackage" "create" {
-  program = ["/bin/bash","./create.sh"]
-  program_sensitive = ["-p", "${var.password}"]
+  #program = ["/bin/bash","./create.sh"]
+  #program_sensitive = ["-p", "${var.password}"]
   query_sensitive = {
     prop2 = "${var.password}"
   }
