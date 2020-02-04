@@ -9,7 +9,6 @@ resource "camc_scriptpackage" "create" {
 
 
 resource "camc_scriptpackage" "update" {
-  program = ["/bin/bash","./update.sh"]
   program_update = ["/bin/bash","./update.sh"]
   query_update = {
     p="${var.password}"
