@@ -9,7 +9,7 @@ resource "camc_scriptpackage" "create" {
 
 
 resource "camc_scriptpackage" "update" {
-  program_update = ["/bin/bash","./update.sh"]
+  program = ["/bin/bash","./update.sh"]
   query = {
     prop1 = "${var.password}"
   }  
