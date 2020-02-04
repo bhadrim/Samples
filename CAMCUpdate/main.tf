@@ -1,6 +1,6 @@
 resource "camc_scriptpackage" "create" {
-  #program = ["/bin/bash","./create.sh"]
-  #program_sensitive = ["-p", "${var.password}"]
+  program = ["/bin/bash","./create.sh"]
+  program_sensitive = ["-p", "${var.password}"]
   query_sensitive = {
     prop2 = "${var.password}"
   }
@@ -10,8 +10,11 @@ resource "camc_scriptpackage" "create" {
 
 resource "camc_scriptpackage" "update" {
   program_update = ["/bin/bash","./update.sh"]
-  query_update = {
-    p="${var.password}"
+  query = {
+    prop1 = "${var.password}"
+  }  
+  query_sensitive = {
+    prop2 = "${var.password}"
   }  
   on_update = true
 }
