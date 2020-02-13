@@ -1,0 +1,3 @@
+[submodule "TestSubModules/test/unit/ec2/modules"]
+	path = TestSubModules/test/unit/ec2/modules
+	url = https://github.com/bhadrim/Modules.git
