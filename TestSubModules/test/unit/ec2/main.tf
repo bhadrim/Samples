@@ -4,12 +4,12 @@ variable "password" {
 }
 
 module "ec2_create"{
-  source="../../../module/ec2"
+  source="./modules/module/ec2"
   password="${var.password}"
 }
 
 module "ebs_create"{
-  source="../../../module/ebs"
+  source="./modules/module/ebs"
   password="${var.password}"
 }
 
