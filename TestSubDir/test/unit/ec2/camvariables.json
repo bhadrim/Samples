@@ -1,0 +1,12 @@
+{
+"template_input_params": [
+       {
+        "name": "password",
+        "type": "string",
+        "hidden": false,
+        "label": "Password",
+        "secured": false,
+        "required": true
+      }
+]
+}
