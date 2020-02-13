@@ -1,0 +1,45 @@
+{
+    "name": "Test Subdir",
+    "description": "Sample template to use subdir",
+    "version": "1.0",
+    "imageUrl": "",
+    "image": "",
+    "type": "prebuilt",
+    "status": "active",
+    "manifest": {
+      "template_type": "Terraform",
+      "template_format": "HCL",
+      "template_provider": "Others",
+      "template": {
+        "templateData": "",
+        "templateVariables": "",
+        "templateOutput": ""
+      },
+      "template_source": {
+        "githubRepoUrl": "",
+        "githubAccessToken": "",
+        "relativePathToTemplateFolder": "TestSubDir/test/unit/ec2",
+        "templateFileName": ""
+      }
+    },
+    "metadata": {
+      "displayName": "Test Subdir",
+      "providerDisplayName": "Others",
+      "longDescription": "Sample template to use subdir",
+      "bullets": [{
+    "title": "Clouds",
+    "description": " Others<br>"}
+   ],
+      "featuredImageUrl": "",
+      "imageUrl": "",
+      "mediumImageUrl": "",
+      "smallImageUrl": "",
+      "documentationUrl": "",
+      "termsUrl": "",
+      "media": [
+      ]
+    },
+    "toolchain": {
+      "git": "https://github.com/ibmcam/cam-toolchain"
+    }
+}
