@@ -23,6 +23,18 @@ resource "camc_updatable_scriptpackage" "update" {
   on_update = true
 }
 
+resource "camc_updatable_scriptpackage" "delete" {
+  program = ["/bin/bash","./update.sh"]
+  program_sensitive = ["-p", "${var.password}"]
+  query = {
+    prop1 = "${var.password}"
+  } 
+  query_sensitive = {
+    prop2 = "${var.password}"
+  }
+  on_delete = true
+}
+
 variable "password" {
   default = "foo"
 }
