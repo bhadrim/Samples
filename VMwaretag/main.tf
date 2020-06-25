@@ -4,7 +4,7 @@ provider "vsphere" {
 }
 
 resource "vsphere_tag_category" "ibm_terraform_automation_category" {
-  count = length(var.camtags.tagslist) > 0 ? 1 : 0
+  count = length(var.tagslist) > 0 ? 1 : 0
   name        = format("%s %s", "IBM Terraform Automation Tags for", var.vm_name)
   description = "Category for IBM Terraform Automation"
   cardinality = "MULTIPLE"
@@ -17,7 +17,7 @@ resource "vsphere_tag_category" "ibm_terraform_automation_category" {
 }
 
 resource "vsphere_tag" "ibm_terraform_automation_tags" {
-  count = length(var.camtags.tagslist)
+  count = length(var.tagslist)
   name        = element(var.tagslist, count.index)
   category_id = element(vsphere_tag_category.ibm_terraform_automation_category.*.id, 0)
   description = "Managed by IBM Terraform Automation"
