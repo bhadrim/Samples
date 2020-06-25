@@ -4,7 +4,7 @@ provider "vsphere" {
 }
 
 resource "vsphere_tag_category" "ibm_terraform_automation_category" {
-  count = length(module.camtags.tagslist) > 0 ? 1 : 0
+  count = length(var.camtags.tagslist) > 0 ? 1 : 0
   name        = format("%s %s", "IBM Terraform Automation Tags for", var.vm_name)
   description = "Category for IBM Terraform Automation"
   cardinality = "MULTIPLE"
