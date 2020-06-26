@@ -1,0 +1,336 @@
+{
+  "terraform_version": "~> 0.12.0",
+  "input_datatypes": [
+  ],
+  "input_groups": [
+    {
+      "name": "Globals",
+      "label": "Azure Globals"
+    },
+    {
+      "name": "Instances-azurerm_virtual_machine",
+      "label": "Instance - Azure Virtual Machine"
+    },
+	{
+      "name": "Networking",
+      "label": "AWS Networking"
+    },
+    {
+      "name": "Instances",
+      "label": "AWS Instance"
+    },
+    {
+      "name": "Other",
+      "label": "AWS Other"
+    }
+  ],
+  "output_groups": [
+  ],
+  "template_input_params": [
+    {
+      "name": "azure_region",
+      "label": "Azure Region",
+      "description": "Azure region to deploy infrastructure resources",
+      "type": "string",
+      "default": "West US",
+      "validation": "",
+      "group_name": "Globals",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
+      "immutable_after_create": false
+    },
+    {
+      "name": "vim_size",
+      "label": "Vim Size",
+      "description": "Virtual Machine Size",
+      "type": "string",
+      "default": "Standard_A2",
+      "validation": "",
+      "group_name": "Instances-azurerm_virtual_machine",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
+      "immutable_after_create": false
+    },
+    {
+      "name": "name_prefix",
+      "label": "Name Prefix",
+      "description": "Prefix of names for Azure resources",
+      "type": "string",
+      "default": "ago-singleVM",
+      "validation": "",
+      "group_name": "Globals",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
+      "immutable_after_create": false
+    },
+    {
+      "name": "admin_user",
+      "label": "Admin User",
+      "description": "Name of an administrative user to be created in virtual machine in this deployment",
+      "type": "string",
+      "default": "ibmadmin",
+      "validation": "",
+      "group_name": "Instances-azurerm_virtual_machine",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
+      "immutable_after_create": false
+    },
+    {
+      "name": "admin_user_password",
+      "label": "Admin User Password",
+      "description": "Password of the newly created administrative user",
+      "type": "string",
+      "default": "",
+      "validation": "",
+      "group_name": "Instances-azurerm_virtual_machine",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
+      "immutable_after_create": false
+    },
+    {
+      "name": "user_public_key",
+      "label": "User Public Key",
+      "description": "Public SSH key used to connect to the virtual machine",
+      "type": "string",
+      "default": "None",
+      "validation": "",
+      "group_name": "Instances-azurerm_virtual_machine",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
+      "immutable_after_create": false
+    },
+	{
+            "name": "hostname-tag",
+            "label": "hostname-tag",
+            "description": "Hostname of server",
+            "type": "string",
+            "default": "agostino-ec2-hybrid",
+            "validation": "",
+            "group_name": "Other",
+            "required": true,
+            "secured": false,
+            "hidden": false,
+            "immutable": false,
+            "immutable_after_create": false
+        },
+        {
+            "name": "aws_region",
+            "label": "AWS Region Name",
+            "description": "AWS region to launch servers.",
+            "type": "string",
+            "default": "us-east-1",
+            "validation": "",
+            "group_name": "Other",
+            "required": true,
+            "secured": false,
+            "hidden": false,
+            "immutable": false,
+            "immutable_after_create": false,
+            "options": [
+                {
+                    "value": "us-east-1",
+                    "label": "US East (N. Virginia)",
+                    "default": true
+                },
+                {
+                    "value": "us-east-2",
+					"label": "US East (Ohio)"
+				},
+				{
+					"value": "us-west-1",
+					"label": "US West (N. California)"
+				},
+				{
+					"value": "us-west-2",
+					"label": "US West (Oregon)"
+				},
+				{
+					"value": "us-gov-west-1",
+					"label": "US GovCloud Region"
+				},
+				{
+					"value": "ca-central-1",
+					"label": "Canada (Central)"
+				},
+				{
+					"value": "eu-west-1",
+					"label": "EU (Ireland)"
+				},
+				{
+					"value": "eu-central-1",
+					"label": "EU (Frankfurt)"
+				},
+				{
+					"value": "eu-west-2",
+					"label": "EU (London)"
+				},
+				{
+					"value": "ap-northeast-1",
+					"label": "Asia Pacific (Tokyo)"
+				},
+				{
+					"value": "ap-northeast-2",
+					"label": "Asia Pacific (Seoul)"
+				},
+				{
+					"value": "ap-southeast-1",
+					"label": "Asia Pacific (Singapore)"
+				},
+				{
+					"value": "ap-southeast-2",
+					"label": "Asia Pacific (Sydney)"
+				},
+				{
+					"value": "ap-south-1",
+					"label": "Asia Pacific (Mumbai)"
+				},
+				{
+					"value": "sa-east-1",
+					"label": "South America (SÃ£o Paulo)"
+				}
+			]
+		},
+		{
+			"name": "vpc_name_tag",
+			"label": "Virtual Private Cloud",
+			"description": "Name of the Virtual Private Cloud (VPC) this resource is going to be deployed into",
+			"type": "string",
+			"default": "CAMVPC",
+			"validation": "",
+			"group_name": "Networking",
+			"required": true,
+			"secured": false,
+			"hidden": false,
+			"immutable": false,
+			"immutable_after_create": false
+		},
+		{
+			"name": "subnet_name",
+			"label": "Subnet Name",
+			"description": "Subnet Name",
+			"type": "string",
+			"default": "CAM",
+			"validation": "",
+			"group_name": "Networking",
+			"required": true,
+			"secured": false,
+			"hidden": false,
+			"immutable": false,
+			"immutable_after_create": false
+		},
+		{
+			"name": "aws_image_size",
+			"label": "AWS Image Instance Size",
+			"description": "AWS Image Instance Size",
+			"type": "string",
+			"default": "t2.small",
+			"validation": "",
+			"group_name": "Instances",
+			"required": true,
+			"secured": false,
+			"hidden": false,
+			"immutable": false,
+			"immutable_after_create": false
+		},
+		{
+			"name": "public_ssh_key_name",
+			"label": "Public SSH Key Name",
+			"description": "Name of the public SSH key used to connect to the virtual guest",
+			"type": "string",
+			"default": "agostino-key-hybrid",
+			"validation": "",
+			"group_name": "Other",
+			"required": true,
+			"secured": false,
+			"hidden": false,
+			"immutable": false,
+			"immutable_after_create": false
+		},
+		{
+			"name": "public_ssh_key",
+			"label": "Public SSH Key",
+			"description": "Public SSH key used to connect to the virtual guest",
+			"type": "string",
+			"default": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAgEAz4hbVIhqP67mEa1vm4+bHoneLQX5aGUv85TN81Un7IvQxZBpVM2QDjwNAvh7G51dwYCDg84LnahW35SsuYf2phYVYlC4w1cR2C8cq1tJnas7S2abRS6jS5AXGLJ13GPaqi0ikctxMep0LmdRXk+6QG/5HuiuOA+9Mii1VieDuVgxJhk7nS3YgP9MpTSPKug4HC3PIhzOrBYKsn4K5Oq/85KydzRwdL7cT+znC3jieWME3llrcNMBP8axk0bt5FhjqYnb9y/6kVne/V+bxuXPzIJPBnc8BiLpP0cjS2xcKMRySx7lfjSYEzB2ZJaRwj9Ymc7p4PsBLpTJCdiG5JomBFxh3ouy/+5MwjBTM4AF8v+QxbGmQLaVXxkpuwb/vWEPbqQQnHIL6WN9vIQT1zPV8Ef+69v37TvEfznk5CkSCQTXYZwJVpcgDZCpyzLs84uMRIrw6KO6SuSrvcKpQ/C7XhMVKy95lfbbwyXzLWIXIsexvZXWXPoKAhjiIkaW21F+zUdUl7Y83uLpqAMrBqOgfouy6DgOArufRDyp4vl0zXe48my34VeBVahWdO+PrJklm2AjXzTK9iNWVc3YlGFClqwZgrut1i74F/Lqb23Lx2yjIom7xnUtg7lP4l9j4LKFe7ClwFpoStMOg7twcD5WjUQuQcs/TPRJNBpzcf3xaps= agostino.colussi@it.ibm.com",
+			"validation": "",
+			"group_name": "Other",
+			"required": true,
+			"secured": false,
+			"hidden": false,
+			"immutable": false,
+			"immutable_after_create": false
+		},
+		{
+			"name": "aws_image",
+			"label": "Operating System ID",
+			"description": "Operating system image id / template that should be used when creating the virtual image",
+			"type": "string",
+			"default": "ubuntu/images/hvm-ssd/ubuntu-trusty-14.04-amd64-server-*",
+			"validation": "",
+			"group_name": "Other",
+			"required": true,
+			"secured": false,
+			"hidden": false,
+			"immutable": false,
+			"immutable_after_create": false
+		},
+		{
+			"name": "aws_ami_owner_id",
+			"label": "AWS AMI Owner ID",
+			"description": "AWS AMI Owner ID",
+			"type": "string",
+			"default": "099720109477",
+			"validation": "",
+			"group_name": "Other",
+			"required": true,
+			"secured": false,
+			"hidden": false,
+			"immutable": false,
+			"immutable_after_create": false
+		}
+  ],
+   "template_output_params": [  
+		{
+      "name": "azure_vm_public_ip",
+      "label": "Azure VM Public IP",
+      "description": "Azure VM Public IP",
+      "group_name": "",
+      "secured": false,
+      "hidden": false,
+      "shortname": "",
+      "type": "string"
+    },
+    {
+      "name": "azure_vm_private_ip",
+      "label": "Azure VM Private IP",
+      "description": "Azure VM Private IP",
+      "group_name": "",
+      "secured": false,
+      "hidden": false,
+      "shortname": "",
+      "type": "string"
+    },
+	{
+	  "name": "ip_address",
+	  "label": "AWS VM Public IP",
+	  "description": "AWS VM Public IP",
+	  "group_name": "",
+	  "secured": false,
+	  "hidden": false,
+	  "shortname": "",
+	  "type": "string"
+	} 
+	]
+}
