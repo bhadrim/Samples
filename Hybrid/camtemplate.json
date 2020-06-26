@@ -1,5 +1,5 @@
  {
-    "name": "BM Hybrid template with tags support - Azure Virtual Server - AWS Virtual server",
+    "name": "Hybrid template with tags support - Azure Virtual Server - AWS Virtual server",
     "description": "Azure: Ubuntu virtual server and ssh key + AWS: Ubuntu virtual server and ssh key + system tags support",
     "version": "1.0",
     "imageUrl": "./assets/svg/IBM_WebSphere_Standalone.svg",
