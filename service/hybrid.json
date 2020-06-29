@@ -268,8 +268,7 @@
                   }
                 ],
                 "provider_engine_version": "0.12.21",
-                "isErrorFlow": false,
-                "cloud_connection_name": "Azure"
+                "isErrorFlow": false
               }
             }
           ],
@@ -322,7 +321,7 @@
             "default": "${templates.hybridte1ac5596a.output.ip_address}"
           }
         ]
-      }      
+      }
     ],
     "plans": [
       {
