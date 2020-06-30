@@ -267,7 +267,7 @@ resource "azurerm_network_interface" "vm" {
   lifecycle {
     ignore_changes = [
       name,
-      ip_configuration[name]
+      ip_configuration.name,
     ]
   }    
 }
