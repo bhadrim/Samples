@@ -269,6 +269,7 @@ resource "azurerm_storage_container" "default" {
 # Deploy the virtual machine resource
 #########################################################
 resource "azurerm_virtual_machine" "vm" {
+  depends_on			= ["azurerm_network_security_group.vm"]
   count                 = var.user_public_key != "None" ? 1 : 0
   name                  = "${var.name_prefix}-vm"
   location              = var.azure_region
