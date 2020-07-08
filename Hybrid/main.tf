@@ -168,6 +168,11 @@ resource "azurerm_resource_group" "default" {
   name     = "${var.name_prefix}-${random_id.default.hex}-rg"
   location = var.azure_region
   tags     = module.camtags.tagsmap
+  lifecycle {
+    ignore_changes = [
+      name,
+    ]
+  }    
 }
 
 resource "azurerm_virtual_network" "default" {
@@ -179,6 +184,11 @@ resource "azurerm_virtual_network" "default" {
   tags = {
     environment = "Terraform BasicVM Ago Demo"
   }
+  lifecycle {
+    ignore_changes = [
+      name,
+    ]
+  }  
 }
 
 resource "azurerm_subnet" "vm" {
@@ -186,6 +196,11 @@ resource "azurerm_subnet" "vm" {
   resource_group_name  = azurerm_resource_group.default.name
   virtual_network_name = azurerm_virtual_network.default.name
   address_prefix       = "10.0.1.0/24"
+  lifecycle {
+    ignore_changes = [
+      name,
+    ]
+  }  
 }
 
 resource "azurerm_public_ip" "vm" {
@@ -194,6 +209,11 @@ resource "azurerm_public_ip" "vm" {
   resource_group_name = azurerm_resource_group.default.name
   allocation_method   = "Static"
   tags                = module.camtags.tagsmap
+  lifecycle {
+    ignore_changes = [
+      name,
+    ]
+  }    
 }
 
 resource "azurerm_network_security_group" "vm" {
@@ -225,6 +245,11 @@ resource "azurerm_network_security_group" "vm" {
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
+  lifecycle {
+    ignore_changes = [
+      name,
+    ]
+  }    
 }
 
 resource "azurerm_network_interface" "vm" {
@@ -239,6 +264,12 @@ resource "azurerm_network_interface" "vm" {
     public_ip_address_id          = azurerm_public_ip.vm.id
   }
   tags                = module.camtags.tagsmap
+  lifecycle {
+    ignore_changes = [
+      name,
+      ip_configuration[0].name,
+    ]
+  }    
 }
 
 resource "azurerm_network_interface_security_group_association" "vm" {
