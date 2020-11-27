@@ -35,7 +35,7 @@
       "label": "IBM Cloud API Key",
       "description": "Indicate the IBM Cloud API key to use",
       "type": "string",
-      "default": "nlRgZOKJZz2IskYnJsuRJ0GWFAeQ1NS9NIInf0rgTWSQ",
+      "default": "",
       "regex": "",
       "group_name": "cloud",
       "required": true,
