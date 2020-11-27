@@ -1,0 +1,46 @@
+{
+    "template_input_params": [
+{
+    "name": "vm_admin_ip_address",
+    "label": "VM IP on ADM subnet",
+    "description": "${vlan.vm_admin_ip_address}",
+    "type": "string",
+    "default": "10.11.18.128",
+    "validation": "",
+    "group_name": "vlan",
+    "required": true,
+    "secured": false,
+    "hidden": false,
+    "immutable": false,
+    "immutable_after_create": false
+  },
+  {
+    "name": "ucd_agent_connection_user",
+    "label": "UCD Agent Connection User",
+    "description": "Ucd Agent Connection User",
+    "type": "string",
+    "default": "${vm.ucd_agent_connection_user}",
+    "validation": "",
+    "group_name": "ucd",
+    "required": true,
+    "secured": false,
+    "hidden": false,
+    "immutable": false,
+    "immutable_after_create": false
+  },
+  {
+    "name": "ucd_agent_connection_password",
+    "label": "UCD Agent Connection Password",
+    "description": "Ucd Agent Connection Password",
+    "type": "string",
+    "default": "${vm.ucd_agent_connection_password}",
+    "validation": "",
+    "group_name": "ucd",
+    "required": true,
+    "secured": false,
+    "hidden": false,
+    "immutable": false,
+    "immutable_after_create": false
+  }
+]
+}
