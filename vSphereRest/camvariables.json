@@ -1,0 +1,15 @@
+{
+  "template_input_params": [
+    {
+      "name": "folder",
+      "label": "folder",
+      "type": "string",
+      "description": "",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false
+    }
+  ],
+  "template_output_params": []
+}
