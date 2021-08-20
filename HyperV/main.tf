@@ -9,14 +9,7 @@ terraform {
 }
 
 provider "hyperv" {
-  user            = "Administrator"
-  password        = "Ams49test"
-  host            = "9.42.13.243"
-  port            = 5985
-  https           = false
-  insecure        = true
-  use_ntlm        = true
-  timeout         = "30s"
+
 }
 
 variable "instance_name"{
