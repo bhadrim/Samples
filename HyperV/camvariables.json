@@ -1,0 +1,125 @@
+{
+  "template_input_params": [
+    {
+      "name": "controller_type",
+      "label": "Controller Type",
+      "type": "string",
+      "description": "Drive controller type",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
+      "default": "Scsi"
+    },
+    {
+      "name": "generation",
+      "label": "Generation",
+      "type": "string",
+      "description": "Virtual machine generation",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
+      "default": 2
+    },
+    {
+      "name": "instance_name",
+      "label": "Instance name",
+      "type": "string",
+      "description": "Virtual machine name",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false
+    },
+    {
+      "name": "instance_vhd_path",
+      "label": "Instance VHD Path",
+      "type": "string",
+      "description": "VHD Path",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
+      "default": "c:\\users\\public\\documents\\hyper-v\\virtual hard disks\\myvm.vhdx"
+    },
+    {
+      "name": "instance_vhd_size",
+      "label": "Instance VHD Size",
+      "type": "string",
+      "description": "VHD Size",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
+      "default": 107374182400
+    },
+    {
+      "name": "iso_path",
+      "label": "VM ISO Path",
+      "type": "string",
+      "description": "Virtual machine iso path",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
+      "default": "C:\\Users\\Administrator\\Downloads\\en_windows_server_2019_updated_jun_2021_x64_dvd_a2a2f782.iso"
+    },
+    {
+      "name": "memory_startup_bytes",
+      "label": "Memory Startup Bytes",
+      "type": "string",
+      "description": "Virtual machine startup memory",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
+      "default": 2147483648
+    },
+    {
+      "name": "network_switch_name",
+      "label": "Network Switch Name",
+      "type": "string",
+      "description": "Network switch name",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
+      "default": "Intel(R) 82574L Gigabit Network Connection - Virtual Switch"
+    },
+    {
+      "name": "processor_count",
+      "label": "Processor count",
+      "type": "string",
+      "description": "Virtual machine processor count",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
+      "default": 1
+    },
+    {
+      "name": "resource_pool_name",
+      "label": "Resource Pool Name",
+      "type": "string",
+      "description": "Resource pool name",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
+      "default": "Primordial"
+    },
+    {
+      "name": "static_memory",
+      "label": "Static memory",
+      "type": "boolean",
+      "description": "is static memory",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
+      "default": true
+    }
+  ],
+  "template_output_params": []
+}
